@@ -28,6 +28,11 @@ const loadSingleCategoryData = async(categoryId)=>{
 const displaySingleCategoryData = (datas)=>{
     const categoryCardContainer = document.getElementById("category-card-container");
     categoryCardContainer.innerHTML = "";
+    if(datas.length <= 0){
+        document.getElementById("no-data-container").classList.remove("hidden");
+    }else{
+        document.getElementById("no-data-container").classList.add("hidden");
+    }
     datas.forEach(data => {
         console.log(data)
         const categoryCard = document.createElement("div");
@@ -37,9 +42,10 @@ const displaySingleCategoryData = (datas)=>{
         <div class="card-body">
           <div class="flex gap-4">
           <img class="w-10 h-10 rounded-full" src="${data.authors[0].profile_picture}">
-          <div>
+          <div class="space-y-2">
           <h2 class="card-title">${data.title}</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <p>${data.authors[0].profile_name}</p>
+          <p>${data.others.views} views</p>
           </div>
           </div>
         </div>
